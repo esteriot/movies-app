@@ -1,0 +1,21 @@
+.header {
+  background-color: var(--color-secondary);
+
+  &__contatiner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  &__nav-list {
+    display: flex;
+    column-gap: 20px;
+  }
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 25px;
+  text-transform: uppercase;
+}

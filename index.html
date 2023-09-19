@@ -3,12 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.scss">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="scss/style.scss">
     <title>Movies App</title>
   </head>
   <body>
-    <main class="main">
-    </main>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__contatiner container">
+          <div class="logo"><a href="/">Movies App</a></div>
+          <nav class="header__nav">
+            <ul class="header__nav-list">
+              <li class="header__nav-item">
+                <a class="header__nav-link" href="/">Movies</a>
+              </li>
+              <li>
+                <a class="header__nav-link" href="/shows.html">TV Shows</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main class="main">
+        <section class="search">
+          <div class="search__container container">
+            <form action="#" class="search__form">
+              <div class="search__radio">
+                <label><input type="radio" id="movie" name="type" value="movie" checked />&nbsp;Movies</label>
+                <label><input type="radio" id="tv" name="type" value="tv" />&nbsp;TV Shows</label>
+              </div>
+              <div class="search__block">
+                <input class="search__input" type="text" name="search" id="search" placeholder="Search..." />
+                <button class="search__button" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/main.js"></script>
+    <script src="https://kit.fontawesome.com/e2344186c0.js" crossorigin="anonymous"></script>
   </body>
 </html>
