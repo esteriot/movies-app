@@ -1,0 +1,33 @@
+.movies__container {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: 70px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: var(--color-secondary);
+  cursor: pointer;
+
+  &__title {
+    font-size: 16px;
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__body {
+    padding: 5px;
+  }
+
+  &:hover {
+    background-color: var(--color-hover);
+    transform: scale(1.05);
+    transition: all 0.5s ease-in-out;
+  }
+}
