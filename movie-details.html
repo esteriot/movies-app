@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="scss/style.scss">
+    <title>Movies App</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__contatiner container">
+          <div class="logo"><a href="/">Movies App</a></div>
+          <nav class="header__nav">
+            <ul class="header__nav-list">
+              <li class="header__nav-item">
+                <a class="header__nav-link" href="/">Movies</a>
+              </li>
+              <li>
+                <a class="header__nav-link" href="/shows.html">TV Shows</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main class="main">
+        <section class="movie__container container">
+          <div class="back">
+            <a class="back__btn" href="index.html">Back To Movies</a>
+          </div>
+          <div class="details">
+            <div class="details__top">
+              <div>
+                <img class="details__image" src="#" alt="Movie poster" />
+              </div>
+              <div class="details__main-info">
+                <h2 class="details__title"></h2>
+                <p>
+                  <i class="fas fa-star"></i>&nbsp;IMDB Rating&nbsp;<span class="details__rating"></span>
+                </p>
+                <div><span>Release Date:</span>
+                  <span class="details__release"></span>
+                </div>
+                <h4>Description:</h4>
+                <p class="details__plot"></p>
+                <h4>Genres:</h4>
+                <ul class="details__genres">
+                </ul>
+              </div>
+            </div>
+            <div class="details__bottom">
+              <h2>Movie Info</h2>
+              <ul>
+                <li>Director:&nbsp;<span class="details__director"></span></li>
+                <li>Actors:&nbsp;<span class="details__actors">:</span></li>
+                <li>Country:&nbsp;<span class="details__country"></span></li>
+                <li>Language:&nbsp;<span class="details__language"></span></li>
+                <li>Runtime:&nbsp;<span class="details__runtime"></span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="spinner"></div>
+    <script type="module" src="/main.js"></script>
+    <script src="https://kit.fontawesome.com/e2344186c0.js" crossorigin="anonymous"></script>
+  </body>
+</html>
