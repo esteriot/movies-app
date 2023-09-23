@@ -2,25 +2,46 @@ const global = {
   currentPage: window.location.pathname,
 };
 
+let searchPage = 1;
+let totalSearchPages = 0;
+
 const moviesContainer = document.querySelector('.movies__container');
+const prevBtn = document.querySelector('.btn-prev');
+const nextBtn = document.querySelector('.btn-next');
+const pageNumber = document.querySelector('.search-page');
+const pagination = document.querySelector('.pagination');
+const results = document.querySelector('.results');
+const resultsCount = document.querySelector('.movies__results-count');
 
 const API_KEY = '';
 const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}`;
 
 function showSpinner() {
+  if (pagination) {
+    pagination.style.display = 'none';
+    results.style.display = 'none';
+  }
   document.querySelector('.spinner').classList.add('show');
 }
 
 function removeSpinner() {
+  if (pagination) {
+    pagination.style.display = 'flex';
+    results.style.display = 'flex';
+  }
+
   document.querySelector('.spinner').classList.remove('show');
 }
 
-async function fetchAPIData(searchTerm, searchType) {
+async function fetchAPIData(searchTerm, searchType, page) {
   showSpinner();
   const res = await fetch(
-    `${API_URL}&s=${searchTerm}&type=${searchType}`,
+    `${API_URL}&s=${searchTerm}&type=${searchType}&page=${page}`,
   );
   const data = await res.json();
+  resultsCount.textContent = data.totalResults;
+  totalSearchPages = Math.ceil(data.totalResults / 10);
+  pageNumber.textContent = `Page ${searchPage} / ${totalSearchPages}`;
   removeSpinner();
   return data;
 }
@@ -59,7 +80,7 @@ function createMovieCard(movie) {
     movie.imdbID
   }" class="card__link">
                 <img src="${
-                  movie.Poster === 'N/A' ? '/public/no-image.jpg' : movie.Poster
+                  movie.Poster === 'N/A' ? '/no-image.jpg' : movie.Poster
                 }" class="card__img" alt="Movie Title" />
               </a>
               <div class="card__body">
@@ -73,8 +94,15 @@ function createMovieCard(movie) {
 
 async function displayMovies(searchTerm, searchType) {
   if (searchTerm.length < 3) return;
-  const { Search } = await fetchAPIData(searchTerm, searchType);
+  const { Search } = await fetchAPIData(searchTerm, searchType, searchPage);
   Search.forEach((movie) => createMovieCard(movie));
+}
+
+function showNewMoviesPage() {
+  moviesContainer.innerHTML = '';
+  const searchTerm = document.forms[0].elements.search.value;
+  const searchType = document.forms[0].elements.type.value;
+  displayMovies(searchTerm, searchType);
 }
 
 function onLoad() {
@@ -83,11 +111,18 @@ function onLoad() {
     case '/index.html':
       document.forms[0].onsubmit = (e) => {
         e.preventDefault();
-        moviesContainer.innerHTML = '';
-        const searchTerm = document.forms[0].elements.search.value;
-        const searchType = document.forms[0].elements.type.value;
-        displayMovies(searchTerm, searchType);
+        showNewMoviesPage();
       };
+      nextBtn.addEventListener('click', () => {
+        searchPage += 1;
+        showNewMoviesPage();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (searchPage === 1) return;
+        searchPage -= 1;
+        showNewMoviesPage();
+      });
       break;
     case '/movie-details.html':
       fetchMovieInfo();
