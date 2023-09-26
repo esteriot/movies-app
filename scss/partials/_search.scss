@@ -41,6 +41,9 @@
     background: var(--color-yellow);
     transition: background-color 0.3s;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
       background-color: var(--color-lightyellow);
